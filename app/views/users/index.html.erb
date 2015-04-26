@@ -1,0 +1,21 @@
+<div class="container-fluid">
+<% @users.each do |user| %>
+  <div class="row">
+    <div class="col-lg-8"><%= user.email %></div>
+    <div class="col-lg-4">
+      <% if user == current_user %>
+        それはあなたです
+      <% else %>
+        <% if current_user.following_users.include? user %>
+          フォロー済みです
+        <% else %>
+          <%= form_for Following.new do |f| %>
+            <%= f.hidden_field :to_user_id, value: user.id.to_s %>
+            <%= f.submit %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

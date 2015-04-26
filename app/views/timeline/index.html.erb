@@ -1,0 +1,5 @@
+<% current_user.following_users.each do |user| %>
+  <% user.tweets.each do |tweet| %>
+    <div><%= user.email %> <%= tweet.body %></div>
+  <% end %>
+<% end %>
